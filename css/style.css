@@ -1,0 +1,31 @@
+/* font-family: 'DM Sans', sans-serif;
+font-family: 'Lato', sans-serif;
+font-family: 'Roboto', sans-serif; */
+
+body {
+    font-family: "DM Sans", sans-serif;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 5vh;
+}
+
+header img {
+    width: 50px;
+    height: 50px;
+}
+
+h1 {
+    margin: 5px;
+    font-family: 'DM Sans';
+    font-weight: 700;
+    font-size: 36px;
+    color: #D04F4F;
+}
+
+
