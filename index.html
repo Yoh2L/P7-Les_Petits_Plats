@@ -9,6 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Lato:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer" 
+    />
     <title>Les Petits Plats</title>
 </head>
 <body>
@@ -16,7 +23,63 @@
             <img src="./assets/images/image_toque.png" alt="Logo toque de chef rouge">
             <h1>Les petits plats</h1>
     </header>
-    <main></main>
-    <script src="./scripts/pages/index.js"></script>
+    <main>
+
+        <section class="search-section">
+            <input type="text" id="search-bar" placeholder="     Rechercher une recette">
+            <div class="fas fa-search search-icon"></div>
+        </section>
+
+        <section class="active-filters">
+<!--             <div class="ingredients_active-filter">
+                <span>Coco</span>
+                <img class="circle-xmark" src="./assets/icons/circle-xmark-regular.svg" alt="">
+            </div>
+            <div class="device_active-filter">
+                <span>Blender</span>
+                <img class="circle-xmark" src="./assets/icons/circle-xmark-regular.svg" alt="">
+            </div>
+            <div class="ustensils_active-filter">
+                <span>Cuillère à soupe</span>
+                <img class="circle-xmark" src="./assets/icons/circle-xmark-regular.svg" alt="">
+            </div> -->
+        </section>
+
+            <div>
+                <div>
+                    <input type="text" placeholder="  Rechercher un ingrédient">
+                    <span class="fas fa-chevron-up"></span>
+                </div>
+                <ul>
+                    <li>Patate</li>
+                    <li>Tomate</li>
+                    <li>lait de coco</li>
+                    <li>rutabaga</li>
+                </ul>
+            </div>
+
+        <section class="filters-section">
+            <div class="ingredients-filter">
+                <span>Ingredients</span>
+                <span class="fas fa-chevron-down"></span>
+            </div>
+            <div class="device-filter">
+                <span>Appareils</span>
+                <span class="fas fa-chevron-down"></span>
+            </div>
+            <div class="ustensils-filter">
+                <span>Ustensiles</span>
+                <span class="fas fa-chevron-down"></span>
+            </div>
+        </section>
+        
+        <section class="recipes-section">
+
+        </section>
+    </main>
+    <script src="./scripts/pages/index.js" type="module"></script>
 </body>
 </html>
+
+
+

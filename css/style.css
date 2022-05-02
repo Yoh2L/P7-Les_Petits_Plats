@@ -22,10 +22,232 @@ header img {
 
 h1 {
     margin: 5px;
+    padding: 0;
     font-family: 'DM Sans';
     font-weight: 700;
     font-size: 36px;
     color: #D04F4F;
 }
 
+h3 {
+    padding: 0;
+    margin: 0;
+    font-family: 'Lato';
+    font-weight: 400;
+    font-size: 18px;
+}
 
+main {
+    margin: 0 10rem;
+}
+
+.search-section {
+    position: relative;
+}
+
+#search-bar {
+    border: none;
+    background-color: #E7E7E7;
+    box-sizing: content-box;
+    width: 100%;
+    height: 70px;
+    border-radius: 5px;
+    font-family: 'Lato';
+    font-size: 18px;
+}
+
+.search-icon {
+    position: absolute;
+    top: 1.2rem;
+    right: 1rem;
+    font-size: 2rem;
+}
+
+.filters-section, .active-filters {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.circle-xmark {
+    width: 18px;
+    height: 18px;
+    margin-right: 1rem;
+}
+
+.ingredients_active-filter {
+    background-color: #3282F7;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .1rem;
+    gap: 1rem;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Lato';
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.device_active-filter {
+    background-color: #68D9A4;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .1rem;
+    gap: 1rem;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Lato';
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.ustensils_active-filter {
+    background-color: #ED6454;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .1rem;
+    gap: 1rem;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Lato';
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.ingredients_active-filter span {
+    margin-left: 1rem;
+}
+
+.device_active-filter span {
+    margin-left: 1rem;
+}
+
+.ustensils_active-filter span {
+    margin-left: 1rem;
+}
+
+.ingredients-filter {
+    background-color: #3282F7;
+    width: 170px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Lato';
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.device-filter {
+    background-color: #68D9A4;
+    width: 170px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Lato';
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.ustensils-filter {
+    background-color: #ED6454;
+    width: 170px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Lato';
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.recipes-section {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+}
+
+.recipe-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 364px;
+    background-color: #E7E7E7;
+    border-radius: 5px;
+}
+
+.image-card {
+    height: 178px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.text-card {
+    padding: 2rem 1rem;
+}
+
+.main-text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.prep-time {
+    font-family: 'Lato';
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.sub-text {
+    display: flex;
+}
+
+.ingredients-list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    font-family: 'Lato';
+    font-size: 12px;
+    width: 100%;
+    max-height: 100px;
+    flex: 1;
+}
+
+.ingredients-list li :nth-child(1) {
+    font-weight: 700;
+}
+
+.recipe-text {
+    display: -webkit-box;
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size : 12px;
+    max-height: 100px;
+    overflow: hidden;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    flex: 1;
+}
