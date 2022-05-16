@@ -26,13 +26,29 @@ export default class Recipe {
             const li = document.createElement('li');
             li.innerHTML = ingredient_template;
             li.querySelector('.ingredient').innerText = element.ingredient;
-            element.quantity !== undefined ? li.querySelector('.quantity').innerText = " : " + element.quantity : "";
-            element.unit !== undefined ? li.querySelector('.unit').innerText = element.unit : "";
+            li.querySelector('.quantity').innerText = element.quantity !== undefined ? ` : ${element.quantity}` : "";
+            li.querySelector('.unit').innerText = element.unit !== undefined ? ` ${element.unit}` : "";
             article.querySelector('.ingredients-list').appendChild(li);
         });
                 
         return article;
         
     }
+
+    extractElements(elementType) {
+        let elements = [];
+        switch (elementType) {
+            case "ingredients":
+                elements = this.ingredients.map(ingredient=> ingredient.ingredient);
+                break;
+        
+            default:
+                break;
+        }
+
+        return elements;
+
+    }
+
 
 }

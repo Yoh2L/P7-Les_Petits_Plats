@@ -133,21 +133,7 @@ main {
     margin-left: 1rem;
 }
 
-.ingredients-filter {
-    background-color: #3282F7;
-    width: 170px;
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    border-radius: 5px;
-    color: white;
-    font-family: 'Lato';
-    font-size: 18px;
-    font-weight: 700;
-    cursor: pointer;
-}
+
 
 .device-filter {
     background-color: #68D9A4;
@@ -162,6 +148,7 @@ main {
     font-family: 'Lato';
     font-size: 18px;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .ustensils-filter {
@@ -177,6 +164,7 @@ main {
     font-family: 'Lato';
     font-size: 18px;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .recipes-section {
@@ -250,4 +238,82 @@ main {
     -webkit-line-clamp: 7;
     -webkit-box-orient: vertical;
     flex: 1;
+}
+
+.ingredients-filter {
+    display: flex;
+    flex-direction: row;
+    background-color: #3282F7;
+    width: fit-content;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Lato';
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 1rem;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 5px;
+    color: white;
+}
+
+.ingredients-filter.expanded {
+    flex-direction: column;
+    position: relative;
+}
+
+.ingredients-filter.expanded .ingredients-filter-title {
+    display: none;
+}
+
+.ingredients-filter .ingredients_research-bar {
+    display: none;
+    border: none;
+    background-color: #3282F7;
+    font-family: 'Lato';
+    font-size: 18px;
+    width: 100%;
+    color: #FFFF;
+}
+
+.ingredients-filter.expanded .ingredients_research-bar {
+    display: block;
+}
+
+
+.ingredients_research-bar:focus {
+    outline: none;
+}
+
+.ingredients_research-bar::placeholder{
+    color: rgba(255, 255, 255, 0.774);
+    opacity: 1;
+}
+
+.ingredients-filter .filter_ingredients-list  {
+    display: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 1rem;
+    column-gap : 4rem;
+    row-gap: .5rem;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.ingredients-filter.expanded .filter_ingredients-list {
+    display: grid;
+}
+
+
+.filter_ingredients-list li {
+    font-family: 'Lato';
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.ingredients-filter.expanded .ingredients_search_icon {
+    transform: rotate(180deg);
+    position: absolute;
+    right: 1rem;
 }
