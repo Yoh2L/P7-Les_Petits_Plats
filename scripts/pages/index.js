@@ -55,10 +55,18 @@ class Main {
     researchIngredient() {
 
         const ingredients_research_bar = document.querySelector(".ingredients_research-bar");
+        let ingredients = [];
+        this.filteredRecipes.forEach(recipe =>{
+            const elements = recipe.extractElements("ingredients");
+            elements.forEach(element => {
+                if (!ingredients.includes(element)) {
+                    ingredients.push(element);
+                }
+            })
+        })
+
         ingredients_research_bar.addEventListener("input", (e) => {
-            console.log(e.target.value);
             let test = ingredients.filter(ingredient => ingredient.toLowerCase().includes(e.target.value.toLowerCase()));
-            console.log(test);
             document.querySelector('.filter_ingredients-list').innerHTML = ``;
             test.forEach(element => {
                 const li = document.createElement('li');
