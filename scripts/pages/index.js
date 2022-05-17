@@ -19,16 +19,15 @@ class Main {
                 this.displayFilters("ingredients");
             }
         })
-
-    };
+    }
 
     displayRecipes() {
         const recipesSection = document.querySelector(".recipes-section");
         recipesSection.innerHTML = "";
         this.filteredRecipes.forEach(element => { 
             recipesSection.appendChild(element.getCard());
-        });
-    };
+        })
+    }
 
     displayFilters(filterType) {
         const filters = [];
@@ -47,9 +46,6 @@ class Main {
             li.innerText = filter;
             filtersUl.appendChild(li);
         })
-
-
-
     }
 
     researchIngredient() {
@@ -73,19 +69,17 @@ class Main {
                 li.innerText = element;
                 document.querySelector('.filter_ingredients-list').appendChild(li);
             })
-
         })
-
     }
 
     activeFilters() {
         const self = this;
         document.querySelector(".filter_ingredients-list").addEventListener("click", function(e) {
-            console.log(e.target.innerText);
             self.createFilters(e.target.innerText);
-
+            self.filterRecipes(e.target.innerText);
         })
     }
+
     createFilters(data) {
             
             document.querySelector(".active-filters").innerHTML = `        
@@ -94,10 +88,30 @@ class Main {
             <img class="circle-xmark" src="./assets/icons/circle-xmark-regular.svg" alt="">
             </div>
             `
-
             }
 
-};
+
+    filterRecipes(data) {
+
+        let recipesList = [];
+
+        this.filteredRecipes.forEach(element => { 
+            let i = 0;
+            let length = element.ingredients.length;
+            while(i < length) {
+                element.ingredients[i].ingredient.includes(data)?recipesList.push(element):"";
+                i++;
+            }
+        })
+        console.log(recipesList);
+        const recipesSection = document.querySelector(".recipes-section");
+        recipesSection.innerHTML = "";
+        recipesList.forEach(element => { 
+            recipesSection.appendChild(element.getCard());
+        }) 
+    }
+
+}
 
 new Main();       
 
