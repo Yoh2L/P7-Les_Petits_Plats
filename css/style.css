@@ -89,6 +89,7 @@ main {
     font-family: 'Lato';
     font-size: 14px;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .device_active-filter {
@@ -131,24 +132,6 @@ main {
 
 .ustensils_active-filter span {
     margin-left: 1rem;
-}
-
-
-
-.device-filter {
-    background-color: #68D9A4;
-    width: 170px;
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    border-radius: 5px;
-    color: white;
-    font-family: 'Lato';
-    font-size: 18px;
-    font-weight: 700;
-    cursor: pointer;
 }
 
 .ustensils-filter {
@@ -243,8 +226,10 @@ main {
 .ingredients-filter {
     display: flex;
     flex-direction: row;
+    box-sizing: border-box;
     background-color: #3282F7;
     width: fit-content;
+    height: 54px;
     border-radius: 5px;
     color: white;
     font-family: 'Lato';
@@ -261,6 +246,7 @@ main {
 .ingredients-filter.expanded {
     flex-direction: column;
     position: relative;
+    height: fit-content;
 }
 
 .ingredients-filter.expanded .ingredients-filter-title {
@@ -313,6 +299,168 @@ main {
 }
 
 .ingredients-filter.expanded .ingredients_search_icon {
+    transform: rotate(180deg);
+    position: absolute;
+    right: 1rem;
+}
+
+.device-filter {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    background-color: #68D9A4;
+    width: fit-content;
+    height: 54px;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Lato';
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 1rem;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 5px;
+    color: white;
+}
+
+.device-filter.expanded {
+    flex-direction: column;
+    position: relative;
+    height: fit-content;
+}
+
+.device-filter.expanded .device-filter-title {
+    display: none;
+}
+
+.device-filter .device_research-bar {
+    display: none;
+    border: none;
+    background-color: #68D9A4;
+    font-family: 'Lato';
+    font-size: 18px;
+    width: 100%;
+    color: #FFFF;
+}
+
+.device-filter.expanded .device_research-bar {
+    display: block;
+}
+
+
+.device_research-bar:focus {
+    outline: none;
+}
+
+.device_research-bar::placeholder{
+    color: rgba(255, 255, 255, 0.774);
+    opacity: 1;
+}
+
+.device-filter .filter_device-list  {
+    display: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 1rem;
+    column-gap : 4rem;
+    row-gap: .5rem;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.device-filter.expanded .filter_device-list {
+    display: grid;
+}
+
+
+.filter_device-list li {
+    font-family: 'Lato';
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.device-filter.expanded .device_search_icon {
+    transform: rotate(180deg);
+    position: absolute;
+    right: 1rem;
+}
+
+.utensil-filter {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    background-color: #ED6454;
+    width: fit-content;
+    height: 54px;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Lato';
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 1rem;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 5px;
+    color: white;
+}
+
+.utensil-filter.expanded {
+    flex-direction: column;
+    position: relative;
+    height: fit-content;
+}
+
+.utensil-filter.expanded .utensil-filter-title {
+    display: none;
+}
+
+.utensil-filter .utensil_research-bar {
+    display: none;
+    border: none;
+    background-color: #ED6454;
+    font-family: 'Lato';
+    font-size: 18px;
+    width: 100%;
+    color: #FFFF;
+}
+
+.utensil-filter.expanded .utensil_research-bar {
+    display: block;
+}
+
+
+.utensil_research-bar:focus {
+    outline: none;
+}
+
+.utensil_research-bar::placeholder{
+    color: rgba(255, 255, 255, 0.774);
+    opacity: 1;
+}
+
+.utensil-filter .filter_utensil-list  {
+    display: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 1rem;
+    column-gap : 4rem;
+    row-gap: .5rem;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.utensil-filter.expanded .filter_utensil-list {
+    display: grid;
+}
+
+
+.filter_utensil-list li {
+    font-family: 'Lato';
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.utensil-filter.expanded .utensil_search_icon {
     transform: rotate(180deg);
     position: absolute;
     right: 1rem;

@@ -14,6 +14,7 @@ export default class Recipe {
         this.ustensils = data.ustensils;
     }
 
+// Création de la carte recette
     getCard() {
         const article = document.createElement('article');
         article.classList.add('recipe-card');
@@ -35,13 +36,21 @@ export default class Recipe {
         
     }
 
+// Extraction de tous les éléments passés en paramètre
     extractElements(elementType) {
         let elements = [];
         switch (elementType) {
             case "ingredients":
                 elements = this.ingredients.map(ingredient=> ingredient.ingredient);
                 break;
-        
+            case "device" :
+                elements.push(this.appliance);
+                break;
+            case "utensil" :
+                this.ustensils.forEach(element => {
+                    elements.push(element);
+                })
+                break;
             default:
                 break;
         }
