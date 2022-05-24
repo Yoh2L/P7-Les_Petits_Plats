@@ -59,5 +59,19 @@ export default class Recipe {
 
     }
 
+    isMatchingAllFilters(ingredients, device, utensil, searchInput) {
 
+// this.matchingIngredient();
+//this.filterDevice();
+        return this.ingredients.find(ing=>ingredients.includes(ing.ingredient));
+    }
+
+    /*
+    méthode 1 : filters ingredients
+    méthode 2 : filters device
+    méthode 3 : filters utensil
+    méthode 4 : filter searchInput
+    méthode 5 matching all filters : appel des 4 précédentes
+
+    */
 }

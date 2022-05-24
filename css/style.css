@@ -105,9 +105,10 @@ main {
     font-family: 'Lato';
     font-size: 14px;
     font-weight: 700;
+    cursor: pointer;
 }
 
-.ustensils_active-filter {
+.utensil_active-filter {
     background-color: #ED6454;
     height: 38px;
     display: flex;
@@ -120,6 +121,7 @@ main {
     font-family: 'Lato';
     font-size: 14px;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .ingredients_active-filter span {
@@ -130,11 +132,11 @@ main {
     margin-left: 1rem;
 }
 
-.ustensils_active-filter span {
+.utensil_active-filter span {
     margin-left: 1rem;
 }
 
-.ustensils-filter {
+.utensil-filter {
     background-color: #ED6454;
     width: 170px;
     height: 70px;
@@ -464,4 +466,5 @@ main {
     transform: rotate(180deg);
     position: absolute;
     right: 1rem;
+    top: 1rem;
 }

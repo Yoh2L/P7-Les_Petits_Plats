@@ -5,8 +5,9 @@ class Main {
     constructor() {
         this.recipes = recipesData.map(recipeData => new Recipe(recipeData));
         this.filteredRecipes = [...this.recipes];
+        this.filters = { ingredients : [], device :[], utensil : []} ;
+        this.selectedItems = {ingredients : [], device :[], utensil : []};
         this.displayRecipes();
-        this.activeFilters();
         this.researchIngredient();
 
 // Expand filters EventListener
@@ -55,39 +56,96 @@ class Main {
 
 // Récupération des données + création de la liste de données du filtre
     displayFilters(filterType) {
-        const filters = [];
+
         const filtersUl = document.querySelector(`.filter_${filterType}-list`);
         this.filteredRecipes.forEach(recipe =>{
             const elements = recipe.extractElements(filterType);
             elements.forEach(element => {
-                if (!filters.includes(element)) {
-                    filters.push(element);
+                if (!this.filters[filterType].includes(element)) {
+                    this.filters[filterType].push(element);
                 }
             })
         })
+        this.filters[filterType].sort();
         filtersUl.innerHTML = "";
-        filters.forEach(filter => {
+        this.filters[filterType].forEach(filter => {
             const li = document.createElement('li');
             li.innerText = filter;
             filtersUl.appendChild(li);
+            //Ajouter ici event listener filtre actif
+            li.addEventListener("click", e => {
+                switch (filterType) {
+                    case "ingredients":
+                        this.selectedItems.ingredients.push(e.target.innerText);
+                        this.createFilters(filterType, e.target.innerText);
+                        /* console.log(this.selectedItems); */
+                        this.filterRecipes();
+                        const ingredientsFilter = document.querySelector(".ingredients-filter");
+                        ingredientsFilter.classList.remove("expanded");
+                        break;
+                    case "device":
+                        this.selectedItems.device.push(e.target.innerText);
+                        this.createFilters(filterType, e.target.innerText);
+                        /* console.log(this.selectedItems); */
+                        this.filterRecipes();
+                        const deviceFilter = document.querySelector(".device-filter");
+                        deviceFilter.classList.remove("expanded");
+                        break;
+                    case "utensil":
+                        this.selectedItems.utensil.push(e.target.innerText);
+                        this.createFilters(filterType, e.target.innerText);
+                        /* console.log(this.selectedItems); */
+                        this.filterRecipes();
+                        const utensilFilter = document.querySelector(".utensil-filter");
+                        utensilFilter.classList.remove("expanded");
+                        break;
+                
+                    default:
+                        break;
+                }
+
+            });
         })
+    }
+
+// Création du bouton de filtre actif
+    createFilters(filterType, data) {
+        console.log(this.selectedItems[filterType]);
+        let data_class = "";
+        if(/\s/.test(data)) {
+            data_class = data.replaceAll(' ', '_');
+        }
+        else {
+            data_class = data;
+        }
+            
+        const div = document.createElement('div');
+        div.classList.add(`${filterType}_active-filter`, data_class);
+        const span = document.createElement('span');
+        span.classList.add("filter-name");
+        span.innerText = data;
+        const img = document.createElement('img');
+        img.classList.add("circle-xmark");
+        img.src = "./assets/icons/circle-xmark-regular.svg";
+        document.querySelector('.active-filters').appendChild(div);
+        div.appendChild(span);
+        div.appendChild(img);
+        
+        let toto = document.getElementsByClassName(data_class)[0];
+        toto.addEventListener("click", e => {
+            toto.style.display = "none"; // remove child + suppression élement du tableau
+            this.selectedItems[filterType] = this.selectedItems[filterType].filter(element=>element !== data);
+            this.filterRecipes();
+        })
+
     }
 
 // Recherche au sein du filtre + affichage temps réel
     researchIngredient() {
         const ingredients_research_bar = document.querySelector(".ingredients_research-bar");
-        let ingredients = [];
-        this.filteredRecipes.forEach(recipe =>{
-            const elements = recipe.extractElements("ingredients");
-            elements.forEach(element => {
-                if (!ingredients.includes(element)) {
-                    ingredients.push(element);
-                }
-            })
-        })
-
+        
         ingredients_research_bar.addEventListener("input", (e) => {
-            let test = ingredients.filter(ingredient => ingredient.toLowerCase().includes(e.target.value.toLowerCase()));
+            let test = this.filters.ingredients.filter(ingredient => ingredient.toLowerCase().includes(e.target.value.toLowerCase()));
             document.querySelector('.filter_ingredients-list').innerHTML = ``;
             test.forEach(element => {
                 const li = document.createElement('li');
@@ -97,48 +155,12 @@ class Main {
         })
     }
 
-// EventListener click sur liste de filtre
-    activeFilters() {
-        const self = this;
-        document.querySelector(".filter_ingredients-list").addEventListener("click", function(e) {
-            self.createFilters(e.target.innerText);
-            self.filterRecipes(e.target.innerText);
-            const ingredientsFilter = document.querySelector(".ingredients-filter");
-            ingredientsFilter.classList.remove("expanded");
-        })
-    }
-
-// Création du bouton de filtre actif
-    createFilters(data) {
-            document.querySelector(".active-filters").innerHTML = `        
-            <div class="ingredients_active-filter">
-            <span class="filter-name">${data}</span>
-            <img class="circle-xmark" src="./assets/icons/circle-xmark-regular.svg" alt="">
-            </div>
-            `
-            const ingredient_active_filter = document.querySelector('.ingredients_active-filter');
-            ingredient_active_filter.addEventListener("click", e => {
-                ingredient_active_filter.style.display = "none";
-                this.displayRecipes();
-            })
-            }
-
 // Fonction de filtres des recettes à l'activation d'un filtre
-    filterRecipes(data) {
-        let recipesList = [];
-        this.filteredRecipes.forEach(element => { 
-            let i = 0;
-            let length = element.ingredients.length;
-            while(i < length) {
-                element.ingredients[i].ingredient.includes(data)?recipesList.push(element):"";
-                i++;
-            }
-        })
-        const recipesSection = document.querySelector(".recipes-section");
-        recipesSection.innerHTML = "";
-        recipesList.forEach(element => { 
-            recipesSection.appendChild(element.getCard());
-        }) 
+    filterRecipes() {
+
+        this.filteredRecipes = this.recipes.filter(recipe=> recipe.isMatchingAllFilters(...Object.values(this.selectedItems), this.searchInput));
+        this.displayRecipes();
+        /* console.log(this.filteredRecipes); */
     }
 }
 
