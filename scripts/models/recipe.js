@@ -11,7 +11,7 @@ export default class Recipe {
         this.time = data.time;
         this.description = data.description;
         this.appliance = data.appliance;
-        this.ustensils = data.ustensils;
+        this.utensils = data.ustensils;
     }
 
 // Création de la carte recette
@@ -47,31 +47,55 @@ export default class Recipe {
                 elements.push(this.appliance);
                 break;
             case "utensil" :
-                this.ustensils.forEach(element => {
+                this.utensils.forEach(element => {
                     elements.push(element);
                 })
                 break;
             default:
                 break;
         }
-
         return elements;
+    }
+
+    filterIngredients(ingredients) {
+        let isMatchingIngredients = true;
+        ingredients.forEach(ing=> {
+            const isMatchingCurIng = this.ingredients.find(i => i.ingredient === ing);
+            isMatchingIngredients = !!isMatchingCurIng&&isMatchingIngredients;
+        })
+        return isMatchingIngredients;
+    }
+
+    filterDevice(device) {
+        let isMatchingDevice = true;
+            device.forEach(dev=> {
+                const isMatchingCurDev = this.appliance.includes(dev);
+                isMatchingDevice = !!isMatchingCurDev&&isMatchingDevice;
+            })
+        return isMatchingDevice;
+    }
+
+    filterUtensil(utensil) {
+        let isMatchingUtensil = true;
+            utensil.forEach(uten=> {
+                const isMatchingCurUten = this.utensils.find(element => element == uten);
+                isMatchingUtensil = !!isMatchingCurUten&&isMatchingUtensil;
+            })
+            return isMatchingUtensil;
+    }
+
+    searchInput() {
 
     }
 
     isMatchingAllFilters(ingredients, device, utensil, searchInput) {
 
-// this.matchingIngredient();
-//this.filterDevice();
-        return this.ingredients.find(ing=>ingredients.includes(ing.ingredient));
+        const isMatchingIngredients = this.filterIngredients(ingredients);
+        const isMatchingDevice = this.filterDevice(device);
+        const isMatchingUtensil = this.filterUtensil(utensil);
+        this.searchInput(searchInput);
+
+        return isMatchingIngredients&&isMatchingDevice&&isMatchingUtensil;
     }
 
-    /*
-    méthode 1 : filters ingredients
-    méthode 2 : filters device
-    méthode 3 : filters utensil
-    méthode 4 : filter searchInput
-    méthode 5 matching all filters : appel des 4 précédentes
-
-    */
 }
