@@ -468,3 +468,16 @@ main {
     right: 1rem;
     top: 1rem;
 }
+
+.no-search {
+    display: flex;
+    justify-content: center;
+    font-family: 'Lato';
+    padding-top: 2rem;
+    font-size: 18px;
+    align-items: center;
+}
+
+.no-search.hidden {
+    display: none;
+}

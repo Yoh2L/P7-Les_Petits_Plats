@@ -56,7 +56,7 @@ export default class Recipe {
         }
         return elements;
     }
-
+// Filtrage des ingredients
     filterIngredients(ingredients) {
         let isMatchingIngredients = true;
         ingredients.forEach(ing=> {
@@ -65,7 +65,7 @@ export default class Recipe {
         })
         return isMatchingIngredients;
     }
-
+// Filtrage des appareils
     filterDevice(device) {
         let isMatchingDevice = true;
             device.forEach(dev=> {
@@ -74,28 +74,44 @@ export default class Recipe {
             })
         return isMatchingDevice;
     }
-
+// Filtrage des ustensiles
     filterUtensil(utensil) {
         let isMatchingUtensil = true;
             utensil.forEach(uten=> {
-                const isMatchingCurUten = this.utensils.find(element => element == uten);
+                const isMatchingCurUten = this.utensils.includes(uten);
                 isMatchingUtensil = !!isMatchingCurUten&&isMatchingUtensil;
             })
             return isMatchingUtensil;
     }
-
-    searchInput() {
-
+// Filtrage via la Search bar
+// Recherche ingredients, description et nom de recette
+    searchInput(searchInput) {
+        let isMatchingInput = true;
+        let matchName = false;
+        let matchDescr = false;
+        let matchIngr = false;
+        if(searchInput) {
+            matchName = this.name.toLowerCase().includes(searchInput.toLowerCase());
+            matchDescr = this.description.toLowerCase().includes(searchInput.toLowerCase());
+            for (let index = 0; index < this.ingredients.length; index++) {
+                if(this.ingredients[index].ingredient.toLowerCase().includes(searchInput.toLowerCase())) {
+                    matchIngr = true;
+                }
+            }
+            isMatchingInput = matchName||matchDescr||matchIngr;
+        }
+        return isMatchingInput;
     }
-
+// Méthode principale de la gestion de filtrage & recherche
+// Si searchInput renvoie "true" la recette sera affichée
     isMatchingAllFilters(ingredients, device, utensil, searchInput) {
 
         const isMatchingIngredients = this.filterIngredients(ingredients);
         const isMatchingDevice = this.filterDevice(device);
         const isMatchingUtensil = this.filterUtensil(utensil);
-        this.searchInput(searchInput);
+        const isMatchingInput = this.searchInput(searchInput);
 
-        return isMatchingIngredients&&isMatchingDevice&&isMatchingUtensil;
+        return isMatchingIngredients&&isMatchingDevice&&isMatchingUtensil&&isMatchingInput;
     }
 
 }

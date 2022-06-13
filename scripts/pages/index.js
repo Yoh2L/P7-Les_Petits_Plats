@@ -28,6 +28,12 @@ class Main {
                 }
             })
         })
+        // EventListener search bar
+        document.getElementById("search-bar").addEventListener("input", e=>{
+            this.searchInput = e.target.value.length > 2 ? e.target.value : "";
+            this.filterRecipes();
+            FILTERS_TYPES.forEach(element => this.displayFilters(element));
+        })
 
         this.displayRecipes();
     }
@@ -43,8 +49,8 @@ class Main {
 
 // Récupération des données + création de la liste de données du filtre
     displayFilters(filterType) {
-
         const filtersUl = document.querySelector(`.filter_${filterType}-list`);
+        this.filters[filterType] = [];
         this.filteredRecipes.forEach(recipe =>{
             const elements = recipe.extractElements(filterType);
             elements.forEach(element => {
@@ -54,10 +60,12 @@ class Main {
             })
         })
         this.filters[filterType].sort();
+        // Filtrage des éléments de la liste, exclusion des éléments déjà sélectionnés
         this.filters[filterType] = this.filters[filterType].filter(f => {
         return f.toLowerCase().includes(this.elementSearch[filterType].toLowerCase())&&!this.selectedItems[filterType].includes(f)
         })
         filtersUl.innerHTML = "";
+        // Création des event Listener au click sur les éléments de la liste
         this.filters[filterType].forEach(filter => {
             const li = document.createElement('li');
             li.innerText = filter;
@@ -78,7 +86,7 @@ class Main {
         div.innerHTML = activeFilter_template;
         div.classList.add(`${filterType}_active-filter`, data_class);
         div.querySelector(".filter-name").innerText = data;
-        
+        //Event Listener suppression de filtre actif
         div.addEventListener("click", e => {
             document.querySelector('.active-filters').removeChild(div);
             this.selectedItems[filterType] = this.selectedItems[filterType].filter(element=>element !== data);
@@ -99,6 +107,13 @@ class Main {
     filterRecipes() {
         this.filteredRecipes = this.recipes.filter(recipe=> recipe.isMatchingAllFilters(...Object.values(this.selectedItems), this.searchInput));
         this.displayRecipes();
+
+        if(this.filteredRecipes.length == 0) {
+            document.querySelector(".no-search").classList.remove("hidden");
+        }
+        else{
+            document.querySelector(".no-search").classList.add("hidden");
+        } 
     }
 }
 
