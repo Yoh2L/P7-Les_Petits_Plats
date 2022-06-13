@@ -93,11 +93,11 @@ export default class Recipe {
         if(searchInput) {
             matchName = this.name.toLowerCase().includes(searchInput.toLowerCase());
             matchDescr = this.description.toLowerCase().includes(searchInput.toLowerCase());
-            for (let index = 0; index < this.ingredients.length; index++) {
-                if(this.ingredients[index].ingredient.toLowerCase().includes(searchInput.toLowerCase())) {
+            this.ingredients.forEach(ing =>{
+                if(ing.ingredient.toLowerCase().includes(searchInput.toLowerCase())) {
                     matchIngr = true;
                 }
-            }
+            })
             isMatchingInput = matchName||matchDescr||matchIngr;
         }
         return isMatchingInput;
